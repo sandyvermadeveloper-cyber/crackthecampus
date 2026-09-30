@@ -1,74 +1,118 @@
 # Performance & Lighthouse Audit Report
 
-This document records the performance, accessibility, best practices, and SEO benchmarks for the **Crack The Campus** landing page recreation.
+This document outlines the performance strategy, target benchmarks, Core Web Vitals definitions, architectural optimizations, and standard operating procedures for auditing the **Crack The Campus** Next.js landing page.
+
+- **Project Setup & Architecture**: [README.md](./README.md)
+- **Reference Website**: [https://www.crackthecampus.com/](https://www.crackthecampus.com/)
 
 ---
 
-## 📊 Benchmark Summary
+## 📌 Audit Metadata & Environment Status
 
-| Metric | Status / Value |
+| Parameter | Configuration / Value |
 | :--- | :--- |
-| **Deployed URL** | `[Pending Deployment]` |
-| **Audit Date** | `2026-09-29` |
-| **Environment** | Next.js Production Build (`npm run build`) |
-| **Target Audience** | Engineering Students on Mobile & Desktop |
+| **Deployed URL** | `Pending deployment` *(Update upon deployment)* |
+| **Audit Date** | `Pending audit` |
+| **Audit Tool** | Chrome Lighthouse (DevTools) / [PageSpeed Insights](https://pagespeed.web.dev/) |
+| **Hosting Platform** | [Vercel](https://vercel.com/) (Next.js Preset) |
+| **Environment** | Next.js Production Build (`npm run build && npm run start`) |
+| **Test Conditions** | Chrome Incognito Mode, Extensions Disabled |
 
 ---
 
-## 📱 Mobile Lighthouse Results
+## 🎯 Target Benchmarks vs. Measured Audit Results
 
-> **Status**: `Pending deployment` *(Perform after live hosting setup)*
+Target thresholds represent standards for frontend performance assessments. Measured results remain `Pending audit` until the application is deployed to production and tested under standard conditions.
 
-| Category | Score Target | Actual Score |
-| :--- | :--- | :--- |
-| **Performance** | `90 - 100` | `Pending deployment` |
-| **Accessibility** | `95 - 100` | `Pending deployment` |
-| **Best Practices** | `95 - 100` | `Pending deployment` |
-| **SEO** | `95 - 100` | `Pending deployment` |
+### 1. Lighthouse Category Scores
 
-### Key Mobile Core Web Vitals Targets
-- **Largest Contentful Paint (LCP)**: `< 2.5s`
-- **First Input Delay / INP**: `< 200ms`
-- **Cumulative Layout Shift (CLS)**: `0.00`
-- **Total Blocking Time (TBT)**: `< 150ms`
+| Category | Target Score Range | Mobile (Measured) | Desktop (Measured) |
+| :--- | :---: | :---: | :---: |
+| **Performance** | `90 - 100` | `Pending audit` | `Pending audit` |
+| **Accessibility** | `95 - 100` | `Pending audit` | `Pending audit` |
+| **Best Practices** | `95 - 100` | `Pending audit` | `Pending audit` |
+| **SEO** | `95 - 100` | `Pending audit` | `Pending audit` |
 
----
+### 2. Core Web Vitals (Real-User Field Metrics)
 
-## 💻 Desktop Lighthouse Results
+> [!NOTE]
+> Core Web Vitals quantify real-user experience (CrUX field data). Automated Lighthouse lab navigation audits measure lab proxies rather than true field INP.
 
-> **Status**: `Pending deployment` *(Perform after live hosting setup)*
+| Metric | Full Name | Good Threshold | Measured Field Value | Classification |
+| :--- | :--- | :---: | :---: | :--- |
+| **LCP** | Largest Contentful Paint | `≤ 2.5 s` | `Not available`* | Core Web Vital |
+| **INP** | Interaction to Next Paint | `≤ 200 ms` | `Not available`* | Core Web Vital |
+| **CLS** | Cumulative Layout Shift | `≤ 0.10` | `Not available`* | Core Web Vital |
 
-| Category | Score Target | Actual Score |
-| :--- | :--- | :--- |
-| **Performance** | `95 - 100` | `Pending deployment` |
-| **Accessibility** | `98 - 100` | `Pending deployment` |
-| **Best Practices** | `98 - 100` | `Pending deployment` |
-| **SEO** | `98 - 100` | `Pending deployment` |
+*\* **Field Data Note**: Real-user Core Web Vitals are collected via the Chrome User Experience Report (CrUX). They remain `Not available` until a live production deployment accumulates sufficient real user traffic.*
 
----
+### 3. Lab Diagnostic Metrics (Synthetic Audits)
 
-## 🔍 Steps to Collect Real Lighthouse Scores Post-Deployment
+> [!NOTE]
+> Lab metrics are measured synthetically under simulated CPU and network throttling. Total Blocking Time (TBT) serves as a lab proxy for main-thread responsiveness.
 
-1. Deploy the project to Vercel, Netlify, or AWS Amplify:
-   ```bash
-   npx vercel --prod
-   ```
-2. Open Google Chrome in Incognito mode.
-3. Open DevTools (`F12` or `Ctrl + Shift + I`) and select the **Lighthouse** tab.
-4. Select **Mobile** mode, choose **Navigation**, check all categories, and click **Analyze page load**.
-5. Record the actual scores in the Mobile section above.
-6. Repeat the audit selecting **Desktop** mode and record the Desktop scores.
-7. Alternatively, run PageSpeed Insights: [https://pagespeed.web.dev/](https://pagespeed.web.dev/) with your deployed live URL.
+| Metric | Full Name | Recommended Target | Measured Value (Mobile) | Measured Value (Desktop) | Metric Type |
+| :--- | :--- | :---: | :---: | :---: | :--- |
+| **FCP** | First Contentful Paint | `≤ 1.8 s` | `Pending audit` | `Pending audit` | Synthetic Lab Metric |
+| **LCP** | Largest Contentful Paint | `≤ 2.5 s` | `Pending audit` | `Pending audit` | Synthetic Lab Metric |
+| **CLS** | Cumulative Layout Shift | `≤ 0.10` | `Pending audit` | `Pending audit` | Synthetic Lab Metric |
+| **TBT** | Total Blocking Time | `≤ 200 ms` | `Pending audit` | `Pending audit` | Synthetic Lab Metric |
 
 ---
 
-## ⚡ Architectural Optimization Summary
+## ⚡ Architectural Optimizations Implemented
 
-1. **Asset Compression**:
-   - Hero background image compressed by ~86% (1.5MB to ~211KB).
-2. **Server-Side Prerendering (SSG)**:
-   - 100% of landing page sections are statically generated into pure HTML at build time.
-3. **Zero Animation Library Weight**:
-   - Marquee and interactive transitions run on native CSS keyframes and hardware-accelerated transforms.
-4. **Font Optimization**:
-   - Google Geist fonts loaded via `next/font` with `font-display: swap` to prevent FOIT (Flash of Unstyled Text).
+1. **Static Server-Side Prerendering (SSG)**:
+   - Next.js App Router statically pre-renders page structure into HTML at build time (`npm run build`).
+   - On page load, pre-rendered static HTML is served before client JavaScript hydrates interactive components (`AnnouncementBar`, `Header`, `FAQ`).
+
+2. **Image Asset Optimization**:
+   - The hero section background image (`hero-promo-office.jpg`) was re-encoded and compressed by ~86% (from 1.5MB down to ~211KB), reducing network payload size during initial load.
+   - Core hero assets use Next.js `<Image priority />` to trigger early asset preloading.
+
+3. **CSS Keyframe Marquee Animations**:
+   - The bi-directional `SocialProof` logo marquee utilizes native CSS `@keyframes` with `transform: translate3d(...)`, avoiding main-thread JavaScript animation loops.
+
+4. **Font Delivery & FOIT Prevention**:
+   - `Geist` and `Geist Mono` web fonts are loaded using `next/font/google` with CSS `font-display: swap`.
+   - **FOIT Prevention**: `font-display: swap` instructs the browser to display text immediately using system fallback fonts while custom fonts download, preventing **Flash of Invisible Text (FOIT)**. Swap behavior may produce a brief Flash of Unstyled Text (FOUT) prior to font load.
+
+5. **Modular Icon Imports**:
+   - UI icons are imported modularly from `lucide-react`, ensuring only referenced SVG icons are included in client JavaScript bundles.
+
+---
+
+## 📋 Procedure for Collecting Audit Results
+
+To record official audit metrics post-deployment:
+
+### Method 1: Google Chrome DevTools (Lighthouse)
+1. Open Google Chrome in **Incognito Mode** (to avoid extension interference).
+2. Navigate to your deployed production URL.
+3. Open Chrome DevTools (`F12` or `Ctrl + Shift + I`) and select the **Lighthouse** tab.
+4. Select configuration settings:
+   - **Mode**: Navigation
+   - **Device**: Audit **Mobile** mode first, then repeat for **Desktop**.
+   - **Categories**: Select *Performance*, *Accessibility*, *Best Practices*, and *SEO*.
+5. Click **Analyze page load**.
+6. **Best Practice**: Execute **three consecutive audit runs** per mode and record the **median score**.
+7. Save HTML/JSON reports or take screenshots to include with your submission.
+
+### Method 2: PageSpeed Insights
+1. Visit [PageSpeed Insights](https://pagespeed.web.dev/).
+2. Enter the deployed production URL and click **Analyze**.
+3. View results across **Mobile** and **Desktop** tabs.
+4. Record lab metrics in the summary tables above.
+
+---
+
+## 🛠️ Summary of Optimizations & Future Improvements
+
+- **Applied Optimizations**:
+  - Compressed heavy hero background asset from 1.5MB to ~211KB.
+  - Implemented multi-row CSS marquee animations with pause-on-hover interaction.
+  - Configured font loading via `next/font/google` with `font-display: swap`.
+
+- **Future Performance Enhancements**:
+  - Implement dynamic imports (`next/dynamic`) for heavy off-screen client components if bundle size increases in future updates.
+  - Fine-tune responsive `sizes` attribute parameters on secondary image assets for specific viewport breakpoints.

@@ -1,29 +1,40 @@
 # Crack The Campus — Landing Page Recreation
 
-An engineering student landing page recreation for **Crack The Campus (CTC)** — India's campus-to-career assessment and placement preparation platform.
+A responsive landing page recreation for **Crack The Campus (CTC)** — India's campus-to-career assessment and placement preparation platform.
 
-Built with **Next.js App Router**, **JavaScript (JSX)**, and **Tailwind CSS**. Optimized for ultra-fast load times, responsive mobile experience, keyboard accessibility, and zero-dependency animation performance.
+- **Reference Website**: [https://www.crackthecampus.com/](https://www.crackthecampus.com/)
+- **Performance Benchmark Guide**: [PERFORMANCE.md](./PERFORMANCE.md)
+
+Built with **Next.js App Router**, **JavaScript (JSX)**, and **Tailwind CSS v4**. Optimized for static server prerendering, responsive layout across mobile and desktop devices, keyboard navigation, and CSS animations.
 
 ---
 
 ## 🚀 Quick Setup & Commands
 
 ### Prerequisites
-- Node.js 18+ or 20+
-- npm (or yarn / pnpm / bun)
+- **Node.js**: `v20.9.0` or higher (required by Next.js 16).
+- **Package Manager**: `npm` (v9+) or equivalent (`yarn`, `pnpm`, `bun`).
+
+### Installation
+```bash
+npm install
+```
 
 ### Development
+Start the local development server:
 ```bash
 npm run dev
 ```
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### Linting
+### Code Linting
+Run ESLint to check for syntax and formatting rules:
 ```bash
 npm run lint
 ```
 
-### Production Build
+### Production Build & Launch
+Create an optimized production build and launch the production server:
 ```bash
 npm run build
 npm run start
@@ -31,116 +42,137 @@ npm run start
 
 ---
 
-## 🛠️ Technology Stack & Decisions
+## 🛠️ Technology Stack & Selection Rationale
 
-1. **Framework**: Next.js 16 (App Router)
-   - Selected for server component architecture, automatic route prerendering, static HTML optimization, and zero-JS overhead for static sections.
-2. **Language**: JavaScript & JSX ONLY
-   - Enforced strict compliance with project constraints. No TypeScript or TSX was introduced.
-3. **Styling**: Tailwind CSS v4
-   - High-performance utility classes and native CSS variables. Zero runtime styling overhead.
-4. **Icons & Assets**: Native inline SVGs
-   - Avoided heavy third-party icon libraries to keep initial JavaScript bundle size minimal (~0 KB icon runtime weight).
+1. **Framework: Next.js 16 (App Router)**
+   - Selected for Server Component architecture. Static layout sections generate static HTML during the build process, serving pre-rendered markup on initial page load. Interactive modules hydrate selectively in the browser.
+2. **Language: JavaScript & JSX**
+   - JavaScript/JSX was chosen for familiarity and faster delivery within the assessment time box.
+3. **Styling: Tailwind CSS v4**
+   - Utility-first styling with native CSS variable theme tokens (`--font-sans`, `--background`) and zero JavaScript runtime styling overhead.
+4. **Icons: Lucide React (`lucide-react`)**
+   - Provides lightweight SVG icons (`Sparkles`, `X`, `Menu`, `ArrowRight`) for interactive micro-components.
 
 ---
 
-## 📁 Architecture & Folder Structure
+## 📁 Project Architecture & Folder Structure
+
+Content is driven by structured data files ([`siteContent.js`](./src/data/siteContent.js) and [`links.js`](./src/lib/links.js)), keeping UI components modular and clean.
 
 ```
 crack-the-campus/
 ├── public/
-│   ├── lightlogo.png               # Brand logo
-│   └── hero-promo-office.jpg       # Compressed & optimized hero background (~211KB)
+│   ├── icon.svg                    # Brand emblem SVG favicon
+│   ├── lightlogo.png               # Header brand logo
+│   └── hero-promo-office.jpg       # Compressed hero background image (~211KB)
 ├── src/
 │   ├── app/
-│   │   ├── favicon.ico
-│   │   ├── globals.css            # Design tokens, marquee animations, smooth scroll
-│   │   ├── layout.jsx             # Root layout with SEO meta & Geist font optimization
-│   │   └── page.jsx               # Main landing page (Server Component)
+│   │   ├── favicon.ico             # App router favicon
+│   │   ├── globals.css             # Tailwind v4 directives, keyframe marquees, theme tokens
+│   │   ├── layout.jsx              # Root layout with Geist font loading, SEO metadata, icons & viewport
+│   │   └── page.jsx                # Server Component assembling main landing page
 │   ├── components/
 │   │   ├── layout/
-│   │   │   ├── AnnouncementBar.jsx # Dismissible promo banner ("use client")
-│   │   │   ├── Header.jsx          # Sticky navbar with mobile menu ("use client")
-│   │   │   └── Footer.jsx          # Comprehensive footer with contact & maps link
+│   │   │   ├── AnnouncementBar.jsx # Interactive dismissible promo banner ("use client")
+│   │   │   ├── Header.jsx          # Sticky navbar with floating mobile menu ("use client")
+│   │   │   └── Footer.jsx          # Footer with contact details & map link
 │   │   ├── sections/
-│   │   │   ├── Hero.jsx            # Value proposition & key CTAs
-│   │   │   ├── SocialProof.jsx     # Infinite marquee with verified company logos
+│   │   │   ├── Hero.jsx            # Value proposition & primary CTAs
+│   │   │   ├── SocialProof.jsx     # Bi-directional infinite logo marquee (B&W to color hover)
 │   │   │   ├── Ecosystem.jsx       # Dual-Core structure: Web Hub vs Pro-Suite
-│   │   │   ├── CTCScore.jsx        # Verified placement readiness score credential
-│   │   │   ├── Contests.jsx        # Monthly Performance series & leaderboard preview
-│   │   │   ├── Infrastructure.jsx  # Enterprise stats (1,300+ drives, 99.9% uptime)
-│   │   │   ├── FAQ.jsx             # Accessible 10-item accordion ("use client")
-│   │   │   └── FinalCTA.jsx        # High-conversion bottom call to action
+│   │   │   ├── CTCScore.jsx        # Composite CTC placement score credential
+│   │   │   ├── Contests.jsx        # Monthly Performance Series leaderboard preview
+│   │   │   ├── Infrastructure.jsx  # Institutional scale stats (1,300+ drives, 99.9% uptime)
+│   │   │   ├── FAQ.jsx             # Accessible accordion Q&A ("use client")
+│   │   │   └── FinalCTA.jsx        # Bottom conversion banner
 │   │   └── ui/
-│   │       ├── ButtonLink.jsx      # Standardized button/anchor UI component
-│   │       ├── Container.jsx       # Layout width wrapper
-│   │       └── SectionHeading.jsx  # Standardized heading & badge component
+│   │       ├── ButtonLink.jsx      # Standardized CTA button/anchor component
+│   │       ├── Container.jsx       # Responsive max-width wrapper
+│   │       └── SectionHeading.jsx  # Section badge and title component
 │   ├── data/
-│   │   └── siteContent.js          # Centralized data arrays for text & content
+│   │   └── siteContent.js          # Centralized copy, FAQ items, and company logo SVG paths
 │   └── lib/
-│       └── links.js                # Verified URLs and internal section anchors
-├── README.md                       # Architecture & setup guide
-├── PERFORMANCE.md                  # Performance benchmark report template
-├── package.json
-└── eslint.config.mjs
+│       └── links.js                # Centralized URLs and section anchor identifiers
+├── package.json                    # Project dependencies and npm scripts
+├── eslint.config.mjs               # ESLint configuration
+├── README.md                       # Setup and architecture documentation
+└── PERFORMANCE.md                  # Audit guide and performance benchmark template
 ```
 
 ---
 
-## 📦 Dependencies & Justifications
+## 📦 Dependencies & Purpose
 
-- `next`: Core framework for SSG and routing.
-- `react`, `react-dom`: React 19 UI rendering.
-- `lucide-react`: Lightweight SVG icon set for UI micro-components.
-- `tailwindcss`, `@tailwindcss/postcss`: Utility-first CSS processing.
-- `eslint`, `eslint-config-next`: Code quality and linting.
-
----
-
-## ⚡ Performance & Optimization Decisions
-
-1. **Hero Image Optimization**:
-   - The hero background image was compressed from **1.5MB** down to **~211KB** (~86% reduction) while preserving crisp 1280px resolution.
-   - Preloaded above the fold using Next.js `<Image priority fetchPriority="high" />`.
-2. **Font Loading**:
-   - `next/font/google` with `display: 'swap'` for `Geist` and `Geist Mono` fonts to prevent render-blocking layout shifts (CLS = 0).
-3. **Pure CSS Motion**:
-   - Marquee animation and accordion transitions run purely in CSS using `transform` and `opacity`, avoiding main-thread JS animation frame lag.
-4. **Reduced Motion**:
-   - Respects `prefers-reduced-motion: reduce` by disabling non-essential animations for users with motion sensitivity.
-5. **Server Components First**:
-   - All static sections (`Hero`, `SocialProof`, `Ecosystem`, `CTCScore`, `Contests`, `Infrastructure`, `FinalCTA`, `Footer`) render as Server Components with **zero client-side JS burden**.
-   - Client Component directive (`"use client"`) is strictly isolated to interactive elements (`AnnouncementBar`, `Header` mobile menu, `FAQ` accordion).
+| Package | Type | Purpose |
+| :--- | :--- | :--- |
+| `next` (`16.3.7`) | Dependency | Core React framework for App Router, SSG, and asset optimization. |
+| `react` (`19.2.8`) | Dependency | UI component rendering engine. |
+| `react-dom` (`19.2.8`) | Dependency | DOM rendering for React 19. |
+| `lucide-react` (`^1.48.0`) | Dependency | SVG icons (`Sparkles`, `X`, `Menu`, `ArrowRight`). |
+| `tailwindcss` (`^4`) | Dev Dependency | Utility-first CSS engine. |
+| `@tailwindcss/postcss` (`^4`)| Dev Dependency | PostCSS plugin for Tailwind CSS v4. |
+| `eslint` (`^9`) | Dev Dependency | Linter for JavaScript code quality. |
+| `eslint-config-next` (`16.3.7`) | Dev Dependency | Next.js linting rules and recommended settings. |
 
 ---
 
-## ♿ Accessibility Considerations
+## ⚡ Technical Optimizations
 
-- **Semantic HTML**: Utilized `<header>`, `<main>`, `<section>`, `<nav>`, `<article>`, and `<footer>` with explicit `aria-labelledby` IDs.
-- **Keyboard Navigation**: Visible focus rings (`focus-visible:ring-2 focus-visible:ring-[#7C3AED]`) on all buttons, links, and mobile menu toggles.
-- **Accordion Accessibility**: FAQ accordions utilize `aria-expanded` and `aria-controls` attributes connected to corresponding content regions.
-- **Color Contrast**: Dark background (`#0B0B0E`) paired with high-contrast text (`#FAFAFA` and `#A1A1AA`) meeting WCAG AA requirements.
+### 1. Server Components vs. Client Hydration
+Static sections (`Hero`, `SocialProof`, `Ecosystem`, `CTCScore`, `Contests`, `Infrastructure`, `FinalCTA`, `Footer`) are static Server Components pre-rendered to HTML at build time. Client JavaScript is loaded only for interactive components marked with `"use client"` (`AnnouncementBar`, `Header`, `FAQ`), keeping the initial client JavaScript bundle lean.
 
----
+### 2. Image Optimization
+- The hero section background image ([`hero-promo-office.jpg`](./public/hero-promo-office.jpg)) was compressed from **1.5MB** to **~211KB** (~86% file size reduction).
+- Above-the-fold images (`hero-promo-office.jpg` and `lightlogo.png`) use Next.js `<Image priority />` to trigger early preloading.
 
-## 📝 Assumptions & Truthful Content Claims
+### 3. Font Loading & `font-display: swap`
+- `Geist` (sans) and `Geist Mono` are loaded using `next/font/google` with `display: 'swap'`.
+- **How `swap` works**: The browser renders text immediately using system fallback fonts while custom web fonts download in the background, avoiding FOIT (**Flash of Invisible Text**). Note that font swapping can produce a brief FOUT (**Flash of Unstyled Text**) if fallback font metrics differ slightly before the custom font renders.
 
-- **Zero Fake Claims**: Only company names, statistics, and claims verified on `crackthecampus.com` were included (Google, Accenture, TCS, Infosys, Wipro, Tata, SAP; 1,300+ drives; 99.9% uptime).
-- **Navigation Links**: Real destinations are wired up (`/explore`, `/institution`, `/pricing`, `/download`, `/signup`, `/login`, `mailto:info@crackthecampus.com`, Google Maps location) or jump to on-page section anchors (`#ecosystem`, `#ctc-score`, `#contests`, `#infrastructure`, `#faq`, `#contact`).
-
----
-
-## 🔮 Future Improvements with More Time
-
-1. Add live interactive score calculation slider for the CTC Score component.
-2. Add interactive code snippet simulation in the Pro-Suite section.
-3. Integrate automated Playwright / Cypress E2E test suite for automated CI runs.
+### 4. CSS Keyframe Marquee Animations
+- The bi-directional `SocialProof` logo marquee runs using CSS `@keyframes` with `transform: translateX()`, avoiding JavaScript scroll listeners.
 
 ---
 
-## 🌐 Deployment Steps (Vercel / Netlify / Cloudflare)
+## ♿ Accessibility Implementation
 
-1. Push code to GitHub / GitLab repository.
-2. Import project into Vercel or Netlify.
-3. Build command: `npm run build`
-4. Output directory: `.next` (Vercel automatic).
+- **Semantic Layout**: HTML5 landmarks (`<header>`, `<main>`, `<section>`, `<nav>`, `<footer>`) with descriptive `aria-labelledby` IDs.
+- **Keyboard & Focus State**: Distinct focus indicators (`focus-visible:ring-2 focus-visible:ring-[#7C3AED]`) on interactive buttons and navigation links.
+- **Accessible Drawer & Accordion**:
+  - The mobile menu drawer includes a document-level listener to close on `Escape` key press or clicking outside.
+  - The `FAQ` accordion buttons use dynamic `aria-expanded` and `aria-controls` attributes linking buttons to content panels.
+
+*Note: While accessibility best practices have been implemented, a formal third-party WCAG audit has not been conducted.*
+
+---
+
+## 📝 Design Decisions & Known Limitations
+
+### Design Decisions
+- **Data-Driven Architecture**: Section copy, FAQ items, and company logo SVG paths are stored in [`siteContent.js`](./src/data/siteContent.js) for clean maintainability.
+- **Verifiable Content**: Company logos shown on the reference website (Google, Accenture, TCS, Infosys, Wipro, Tata, SAP) and statistics (1,300+ placement drives, 99.9% uptime) align with reference site content.
+- **Floating Mobile Drawer**: The mobile navigation floats over the page with an overlay backdrop rather than displacing page layout.
+
+### Known Limitations
+1. **Static & Mock Content**: Platform statistics, contest schedules, and leaderboards rely on static mock data defined in [`siteContent.js`](./src/data/siteContent.js).
+2. **No Live Backend / API**: There are no database models or server-side API endpoints connected for user authentication or contest submissions.
+3. **External CTA Destinations**: Action buttons and navigation links route to external target URLs (e.g. `crackthecampus.com`) or section anchor hashes (`#features`, `#contests`).
+
+### Realistic Future Improvements
+1. **Interactive Placement Score Calculator**: Build a client-side slider component to calculate custom placement readiness scores dynamically.
+2. **Interactive Code Editor Sandbox**: Add a simulated coding editor component within the Pro-Suite section.
+3. **Automated E2E Testing**: Add Playwright / Cypress integration tests for automated CI pipelines.
+
+---
+
+## 🌐 Deployment Instructions (Vercel)
+
+1. Push the project repository to GitHub, GitLab, or Bitbucket.
+2. Import the project in the [Vercel Dashboard](https://vercel.com/).
+3. Select the **Next.js** framework preset. Vercel automatically detects default build settings:
+   - **Build Command**: `npm run build`
+   - **Install Command**: `npm install`
+4. Click **Deploy**. Vercel handles static output generation and deployment automatically.
+
+- **Live Deployment**: `Pending deployment`
+- **Repository**: `Pending repository URL`
