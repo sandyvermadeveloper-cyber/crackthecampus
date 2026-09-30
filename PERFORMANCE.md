@@ -11,7 +11,7 @@ This document outlines the performance strategy, target benchmarks, Core Web Vit
 
 | Parameter | Configuration / Value |
 | :--- | :--- |
-| **Deployed URL** | `Pending deployment` *(update after publishing)* |
+| **Deployed URL** | [https://crackthecampus-indol.vercel.app/](https://crackthecampus-indol.vercel.app/) |
 | **Local Audit URL** | `http://localhost:3102` *(temporary production server)* |
 | **Audit Date** | September 30, 2026 |
 | **Audit Tool** | Lighthouse `13.5.0` with headless Chrome |

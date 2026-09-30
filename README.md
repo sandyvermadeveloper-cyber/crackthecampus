@@ -3,7 +3,8 @@
 A responsive landing page recreation for **Crack The Campus (CTC)** — India's campus-to-career assessment and placement preparation platform.
 
 - **Reference Website**: [https://www.crackthecampus.com/](https://www.crackthecampus.com/)
-- **Source Repository**: [https://github.com/sandyvermadeveloper-cyber/crackthecampus](https://github.com/sandyvermadeveloper-cyber/crackthecampus)
+- **GitHub Profile**: [https://github.com/sandeepverma9525](https://github.com/sandeepverma9525)
+- **Live Website**: [https://crackthecampus-indol.vercel.app/](https://crackthecampus-indol.vercel.app/)
 - **Performance Benchmark Guide**: [PERFORMANCE.md](./PERFORMANCE.md)
 
 Built with **Next.js App Router**, **JavaScript (JSX)**, and **Tailwind CSS v4**. Optimized for static server prerendering, responsive layout across mobile and desktop devices, keyboard navigation, and CSS animations.
@@ -175,5 +176,5 @@ Static sections (`Hero`, `SocialProof`, `Ecosystem`, `CTCScore`, `Contests`, `In
    - **Install Command**: `npm install`
 4. Click **Deploy**. Vercel handles static output generation and deployment automatically.
 
-- **Live Deployment**: `Pending deployment`
-- **Repository**: [https://github.com/sandyvermadeveloper-cyber/crackthecampus](https://github.com/sandyvermadeveloper-cyber/crackthecampus)
+- **Live Deployment**: [https://crackthecampus-indol.vercel.app/](https://crackthecampus-indol.vercel.app/)
+- **GitHub Profile**: [https://github.com/sandeepverma9525](https://github.com/sandeepverma9525)
