@@ -13,6 +13,7 @@ export default function Ecosystem() {
     >
       <Container>
         <SectionHeading
+          id="ecosystem-heading"
           tag={ECOSYSTEM_CONTENT.tag}
           title={ECOSYSTEM_CONTENT.title}
           subtitle={ECOSYSTEM_CONTENT.subtitle}

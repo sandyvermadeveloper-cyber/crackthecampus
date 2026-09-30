@@ -21,6 +21,7 @@ export default function FAQ() {
     >
       <Container>
         <SectionHeading
+          id="faq-heading"
           tag={FAQ_CONTENT.tag}
           title={FAQ_CONTENT.title}
           subtitle={FAQ_CONTENT.subtitle}

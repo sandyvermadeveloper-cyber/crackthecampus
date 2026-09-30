@@ -11,6 +11,7 @@ export default function Infrastructure() {
     >
       <Container>
         <SectionHeading
+          id="infrastructure-heading"
           tag={INFRASTRUCTURE_CONTENT.tag}
           title={INFRASTRUCTURE_CONTENT.title}
           subtitle={INFRASTRUCTURE_CONTENT.subtitle}

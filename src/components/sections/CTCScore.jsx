@@ -11,6 +11,7 @@ export default function CTCScore() {
     >
       <Container>
         <SectionHeading
+          id="ctc-score-heading"
           tag={CTC_SCORE_CONTENT.tag}
           title={CTC_SCORE_CONTENT.title}
           subtitle={CTC_SCORE_CONTENT.subtitle}
@@ -47,7 +48,7 @@ export default function CTCScore() {
                 <p className="text-sm text-[#A1A1AA] leading-relaxed">
                   {pillar.desc}
                 </p>
-                <div className="flex items-center justify-between border-t border-[#26262A] pt-3 text-xs text-[#71717A]">
+                <div className="flex items-center justify-between border-t border-[#26262A] pt-3 text-xs text-[#A1A1AA]">
                   <span>Signal Metric:</span>
                   <span className="font-semibold text-[#D4D4D8]">
                     {pillar.metric}

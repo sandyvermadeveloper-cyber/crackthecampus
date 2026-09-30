@@ -1,4 +1,5 @@
 export default function SectionHeading({
+  id,
   tag,
   title,
   subtitle,
@@ -20,7 +21,10 @@ export default function SectionHeading({
         </div>
       )}
       {title && (
-        <h2 className="text-balance text-2xl font-bold tracking-tight text-[#FAFAFA] sm:text-3xl lg:text-4xl leading-tight">
+        <h2
+          id={id}
+          className="text-balance text-2xl font-bold tracking-tight text-[#FAFAFA] sm:text-3xl lg:text-4xl leading-tight"
+        >
           {title}
         </h2>
       )}

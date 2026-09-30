@@ -50,6 +50,7 @@ export default function SocialProof() {
             {row1Logos.map((company, idx) => (
               <div
                 key={`r1-${company.name}-${idx}`}
+                aria-hidden={idx >= TRUSTED_COMPANIES_ROW1.length ? 'true' : undefined}
                 className="group/logo flex h-10 sm:h-12 shrink-0 items-center justify-center px-4 cursor-pointer transition-transform duration-300 hover:scale-110"
                 title={company.name}
               >
@@ -73,6 +74,7 @@ export default function SocialProof() {
             {row2Logos.map((company, idx) => (
               <div
                 key={`r2-${company.name}-${idx}`}
+                aria-hidden={idx >= TRUSTED_COMPANIES_ROW2.length ? 'true' : undefined}
                 className="group/logo flex h-10 sm:h-12 shrink-0 items-center justify-center px-4 cursor-pointer transition-transform duration-300 hover:scale-110"
                 title={company.name}
               >

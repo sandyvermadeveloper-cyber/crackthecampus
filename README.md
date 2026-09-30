@@ -3,6 +3,7 @@
 A responsive landing page recreation for **Crack The Campus (CTC)** — India's campus-to-career assessment and placement preparation platform.
 
 - **Reference Website**: [https://www.crackthecampus.com/](https://www.crackthecampus.com/)
+- **Source Repository**: [https://github.com/sandyvermadeveloper-cyber/crackthecampus](https://github.com/sandyvermadeveloper-cyber/crackthecampus)
 - **Performance Benchmark Guide**: [PERFORMANCE.md](./PERFORMANCE.md)
 
 Built with **Next.js App Router**, **JavaScript (JSX)**, and **Tailwind CSS v4**. Optimized for static server prerendering, responsive layout across mobile and desktop devices, keyboard navigation, and CSS animations.
@@ -62,14 +63,13 @@ Content is driven by structured data files ([`siteContent.js`](./src/data/siteCo
 ```
 crack-the-campus/
 ├── public/
-│   ├── icon.svg                    # Brand emblem SVG favicon
 │   ├── lightlogo.png               # Header brand logo
 │   └── hero-promo-office.jpg       # Compressed hero background image (~211KB)
 ├── src/
 │   ├── app/
 │   │   ├── favicon.ico             # App router favicon
 │   │   ├── globals.css             # Tailwind v4 directives, keyframe marquees, theme tokens
-│   │   ├── layout.jsx              # Root layout with Geist font loading, SEO metadata, icons & viewport
+│   │   ├── layout.jsx              # Root layout with Geist font loading and SEO metadata
 │   │   └── page.jsx                # Server Component assembling main landing page
 │   ├── components/
 │   │   ├── layout/
@@ -137,6 +137,7 @@ Static sections (`Hero`, `SocialProof`, `Ecosystem`, `CTCScore`, `Contests`, `In
 ## ♿ Accessibility Implementation
 
 - **Semantic Layout**: HTML5 landmarks (`<header>`, `<main>`, `<section>`, `<nav>`, `<footer>`) with descriptive `aria-labelledby` IDs.
+- **Accessible Motion & Repetition**: Marquee animation respects `prefers-reduced-motion`, and duplicate visual logo sets are hidden from assistive technology.
 - **Keyboard & Focus State**: Distinct focus indicators (`focus-visible:ring-2 focus-visible:ring-[#7C3AED]`) on interactive buttons and navigation links.
 - **Accessible Drawer & Accordion**:
   - The mobile menu drawer includes a document-level listener to close on `Escape` key press or clicking outside.
@@ -175,4 +176,4 @@ Static sections (`Hero`, `SocialProof`, `Ecosystem`, `CTCScore`, `Contests`, `In
 4. Click **Deploy**. Vercel handles static output generation and deployment automatically.
 
 - **Live Deployment**: `Pending deployment`
-- **Repository**: `Pending repository URL`
+- **Repository**: [https://github.com/sandyvermadeveloper-cyber/crackthecampus](https://github.com/sandyvermadeveloper-cyber/crackthecampus)

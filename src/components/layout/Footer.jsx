@@ -94,7 +94,7 @@ export default function Footer() {
                   href={FOOTER_CONTENT.contact.mapHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-1.5 inline-flex items-center gap-1 font-semibold text-[#7C3AED] hover:text-[#C4B5FD]"
+                  className="mt-1.5 inline-flex items-center gap-1 font-semibold text-[#A78BFA] hover:text-[#C4B5FD]"
                 >
                   Larger map →
                 </a>
@@ -104,7 +104,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="flex flex-col items-center justify-between gap-4 border-t border-[#1C1C22] pt-8 sm:flex-row text-xs text-[#71717A]">
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-[#1C1C22] pt-8 sm:flex-row text-xs text-[#A1A1AA]">
           <p>{FOOTER_CONTENT.copyright}</p>
           <div className="flex items-center gap-6">
             {FOOTER_CONTENT.legalLinks.map((link) => (

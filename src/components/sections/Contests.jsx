@@ -11,6 +11,7 @@ export default function Contests() {
     >
       <Container>
         <SectionHeading
+          id="contests-heading"
           tag={CONTESTS_CONTENT.tag}
           title={CONTESTS_CONTENT.title}
           subtitle={CONTESTS_CONTENT.subtitle}
@@ -105,7 +106,7 @@ export default function Contests() {
                         key={row.rank}
                         className="flex items-center justify-between rounded-lg border border-[#26262A] bg-[#141418] px-4 py-2.5 text-xs"
                       >
-                        <span className="font-mono font-bold text-[#7C3AED]">
+                        <span className="font-mono font-bold text-[#C4B5FD]">
                           #{row.rank}
                         </span>
                         <span className="font-mono text-white">{row.name}</span>

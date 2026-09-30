@@ -11,27 +11,28 @@ This document outlines the performance strategy, target benchmarks, Core Web Vit
 
 | Parameter | Configuration / Value |
 | :--- | :--- |
-| **Deployed URL** | `Pending deployment` *(Update upon deployment)* |
-| **Audit Date** | `Pending audit` |
-| **Audit Tool** | Chrome Lighthouse (DevTools) / [PageSpeed Insights](https://pagespeed.web.dev/) |
-| **Hosting Platform** | [Vercel](https://vercel.com/) (Next.js Preset) |
-| **Environment** | Next.js Production Build (`npm run build && npm run start`) |
-| **Test Conditions** | Chrome Incognito Mode, Extensions Disabled |
+| **Deployed URL** | `Pending deployment` *(update after publishing)* |
+| **Local Audit URL** | `http://localhost:3102` *(temporary production server)* |
+| **Audit Date** | September 30, 2026 |
+| **Audit Tool** | Lighthouse `13.5.0` with headless Chrome |
+| **Hosting Platform** | [Vercel](https://vercel.com/) planned (Next.js Preset) |
+| **Environment** | Local Next.js production build (`npm run build && npm run start`) |
+| **Test Conditions** | Mobile and desktop runs executed sequentially with Lighthouse default throttling |
 
 ---
 
 ## 🎯 Target Benchmarks vs. Measured Audit Results
 
-Target thresholds represent standards for frontend performance assessments. Measured results remain `Pending audit` until the application is deployed to production and tested under standard conditions.
+Target thresholds represent standards for frontend performance assessments. The measurements below are local production-build lab results; they must be rerun against the deployed URL before final submission.
 
 ### 1. Lighthouse Category Scores
 
 | Category | Target Score Range | Mobile (Measured) | Desktop (Measured) |
 | :--- | :---: | :---: | :---: |
-| **Performance** | `90 - 100` | `Pending audit` | `Pending audit` |
-| **Accessibility** | `95 - 100` | `Pending audit` | `Pending audit` |
-| **Best Practices** | `95 - 100` | `Pending audit` | `Pending audit` |
-| **SEO** | `95 - 100` | `Pending audit` | `Pending audit` |
+| **Performance** | `90 - 100` | `90` | `100` |
+| **Accessibility** | `95 - 100` | `100` | `100` |
+| **Best Practices** | `95 - 100` | `100` | `100` |
+| **SEO** | `95 - 100` | `100` | `100` |
 
 ### 2. Core Web Vitals (Real-User Field Metrics)
 
@@ -53,10 +54,12 @@ Target thresholds represent standards for frontend performance assessments. Meas
 
 | Metric | Full Name | Recommended Target | Measured Value (Mobile) | Measured Value (Desktop) | Metric Type |
 | :--- | :--- | :---: | :---: | :---: | :--- |
-| **FCP** | First Contentful Paint | `≤ 1.8 s` | `Pending audit` | `Pending audit` | Synthetic Lab Metric |
-| **LCP** | Largest Contentful Paint | `≤ 2.5 s` | `Pending audit` | `Pending audit` | Synthetic Lab Metric |
-| **CLS** | Cumulative Layout Shift | `≤ 0.10` | `Pending audit` | `Pending audit` | Synthetic Lab Metric |
-| **TBT** | Total Blocking Time | `≤ 200 ms` | `Pending audit` | `Pending audit` | Synthetic Lab Metric |
+| **FCP** | First Contentful Paint | `≤ 1.8 s` | `1.0 s` | `0.3 s` | Synthetic Lab Metric |
+| **LCP** | Largest Contentful Paint | `≤ 2.5 s` | `3.1 s` | `0.6 s` | Synthetic Lab Metric |
+| **CLS** | Cumulative Layout Shift | `≤ 0.10` | `0` | `0` | Synthetic Lab Metric |
+| **TBT** | Total Blocking Time | `≤ 200 ms` | `170 ms` | `0 ms` | Synthetic Lab Metric |
+
+The mobile LCP is the only measured lab metric above its target. The hero image is the LCP element; its production CDN delivery and cache behavior should be validated after deployment.
 
 ---
 
@@ -84,7 +87,7 @@ Target thresholds represent standards for frontend performance assessments. Meas
 
 ## 📋 Procedure for Collecting Audit Results
 
-To record official audit metrics post-deployment:
+The local measurements above are a development baseline. To record official audit metrics post-deployment:
 
 ### Method 1: Google Chrome DevTools (Lighthouse)
 1. Open Google Chrome in **Incognito Mode** (to avoid extension interference).
